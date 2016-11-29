@@ -3,4 +3,23 @@
     <string name="action_settings">Settings</string>
     <string name="action_quote">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+
+    <string-array name="InspQuotes">
+        <item>\"I choose a lazy person to do a hard job. Because a lazy person will find an easy way to do it.\" - Bill Gates</item>
+        <item>\"Your most unhappy customers are your greatest source of learning.\" - Bill Gates</item>
+        <item>\"A person who never made a mistake never tried anything new.\" - Albert Einstein</item>
+        <item>\"The important thing is not to stop questioning. Curiosity has its own reason for existing.\" - Albert Einstein</item>
+        <item>\"It does not matter how slowly you go, so long as you do not stop.\" - Confucius</item>
+        <item>\"You miss 100% of shots you don\'t take.\" - Konstantin Mladenov</item>
+        <item>\"Focus is a matter of deciding what things you\'re not going to do.\" - John Carmack</item>
+        <item>\"Focused, hard work is the real key to success. Keep your eyes on the goal, and just keep taking the next step towards
+                completing it. If you aren\'t sure which way to do something, do it both ways and see which works better.\" - John Carmack</item>
+        <item>\"If it\'s a good idea, go ahead and do it. It\'s much easier to apologize than it is to get permission.\" - Grace Hopper</item>
+    </string-array>
+
+
+    <string name="title_activity_quotes">Motivational Quote</string>
+    <string name="title_activity_settings">Settings</string>
+
+
 </resources>
