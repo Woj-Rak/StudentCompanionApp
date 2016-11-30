@@ -21,7 +21,7 @@ public class QuotesActivity extends AppCompatActivity {
         int min = 0;
         int max = quotes.length;
         Random r = new Random();
-        int ran = r.nextInt(max - min + 1) + min;
+        int ran = r.nextInt(max - min) + min;
         String chosenQuote = quotes[ran];
         TextView myTextView = (TextView) findViewById(R.id.textQuoteDisplay);
         myTextView.setText(chosenQuote);

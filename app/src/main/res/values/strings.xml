@@ -3,6 +3,8 @@
     <string name="action_settings">Settings</string>
     <string name="action_quote">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_quotes">Motivational Quote</string>
+    <string name="title_activity_settings">Settings</string>
 
     <string-array name="InspQuotes">
         <item>\"I choose a lazy person to do a hard job. Because a lazy person will find an easy way to do it.\" - Bill Gates</item>
@@ -18,8 +20,7 @@
     </string-array>
 
 
-    <string name="title_activity_quotes">Motivational Quote</string>
-    <string name="title_activity_settings">Settings</string>
+
 
 
 </resources>
