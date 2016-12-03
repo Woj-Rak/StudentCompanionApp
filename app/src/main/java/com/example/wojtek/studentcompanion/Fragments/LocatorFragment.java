@@ -1,4 +1,4 @@
-package com.example.wojtek.studentcompanion;
+package com.example.wojtek.studentcompanion.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,25 +7,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.wojtek.studentcompanion.R;
+
 /**
- * Fragment For the Notes Section
+ * Created by Wojtek on 29/11/2016.
  */
-public class NotesFragment extends Fragment {
+public class LocatorFragment extends Fragment {
     /**
      * The fragment argument representing the section number for this
      * fragment.
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    public NotesFragment() {
+    public LocatorFragment() {
     }
 
     /**
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static NotesFragment newInstance(int sectionNumber) {
-        NotesFragment fragment = new NotesFragment();
+    public static LocatorFragment newInstance(int sectionNumber) {
+        LocatorFragment fragment = new LocatorFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
@@ -35,7 +37,7 @@ public class NotesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_notes, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_locator, container, false);
         TextView textView = (TextView) rootView.findViewById(R.id.section_label);
         textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
         return rootView;

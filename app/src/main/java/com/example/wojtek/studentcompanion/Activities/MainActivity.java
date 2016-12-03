@@ -1,4 +1,4 @@
-package com.example.wojtek.studentcompanion;
+package com.example.wojtek.studentcompanion.Activities;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -11,6 +11,12 @@ import android.support.v7.widget.Toolbar;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.wojtek.studentcompanion.Fragments.AudioFragment;
+import com.example.wojtek.studentcompanion.Fragments.LocatorFragment;
+import com.example.wojtek.studentcompanion.Fragments.NotesFragment;
+import com.example.wojtek.studentcompanion.Fragments.ScheduleFragment;
+import com.example.wojtek.studentcompanion.R;
 
 public class MainActivity extends AppCompatActivity {
 

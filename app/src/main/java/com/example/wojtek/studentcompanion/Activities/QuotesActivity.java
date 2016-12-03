@@ -1,4 +1,4 @@
-package com.example.wojtek.studentcompanion;
+package com.example.wojtek.studentcompanion.Activities;
 
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.wojtek.studentcompanion.R;
 
 import java.util.Random;
 

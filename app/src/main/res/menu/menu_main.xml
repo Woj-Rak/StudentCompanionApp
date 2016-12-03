@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.wojtek.studentcompanion.MainActivity">
+    tools:context="com.example.wojtek.studentcompanion.Activities.MainActivity">
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
@@ -10,7 +10,7 @@
     <item
         android:id="@+id/action_quote"
         android:orderInCategory="110"
-        android:title="Inspirational Quote"
+        android:title="Motivational Quote"
         />
 
 
