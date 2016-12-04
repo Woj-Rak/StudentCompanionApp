@@ -1,11 +1,17 @@
 package com.example.wojtek.studentcompanion.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.example.wojtek.studentcompanion.Activities.MainActivity;
+import com.example.wojtek.studentcompanion.Activities.NewNoteActivity;
 import com.example.wojtek.studentcompanion.R;
 
 /**
@@ -17,6 +23,11 @@ public class NotesFragment extends Fragment {
      * fragment.
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
+
+    public void actionFab(){
+        Intent myIntent = new Intent(getActivity(), NewNoteActivity.class);
+        startActivity(myIntent);
+    }
 
     public NotesFragment() {
     }
@@ -37,8 +48,16 @@ public class NotesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_notes, container, false);
-        return rootView;
 
+        FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                actionFab();
+            }
+        });
+
+        return rootView;
 
     }
 }

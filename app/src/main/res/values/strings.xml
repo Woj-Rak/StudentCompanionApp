@@ -5,6 +5,9 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_quotes">Motivational Quote</string>
     <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_new_note">New Note</string>
+    <string name="todoAcceptBtn">Add</string>
+    <string name="todoCancelBtn">Cancel</string>
 
     <string-array name="InspQuotes">
         <item>\"I choose a lazy person to do a hard job. Because a lazy person will find an easy way to do it.\" - Bill Gates</item>
@@ -18,8 +21,6 @@
                 completing it. If you aren\'t sure which way to do something, do it both ways and see which works better.\" - John Carmack</item>
         <item>\"If it\'s a good idea, go ahead and do it. It\'s much easier to apologize than it is to get permission.\" - Grace Hopper</item>
     </string-array>
-
-
 
 
 

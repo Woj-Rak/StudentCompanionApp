@@ -20,6 +20,10 @@ import com.example.wojtek.studentcompanion.R;
 
 public class MainActivity extends AppCompatActivity {
 
+    public void actionSettings() {
+
+    }
+
     public void actionQuote() {
         Intent myIntent = new Intent(MainActivity.this, QuotesActivity.class);
         MainActivity.this.startActivity(myIntent);
