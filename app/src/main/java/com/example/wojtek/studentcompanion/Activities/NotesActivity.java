@@ -7,13 +7,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -26,7 +23,7 @@ import com.example.wojtek.studentcompanion.R;
 
 import java.util.ArrayList;
 
-public class NewNoteActivity extends AppCompatActivity {
+public class NotesActivity extends AppCompatActivity {
     private static final String TAG = "New Note Activity";
 
     private DatabaseHandler mHelper;
@@ -34,8 +31,8 @@ public class NewNoteActivity extends AppCompatActivity {
     private ArrayAdapter<String> mAdapter;
 
     public Dialog addItemMenu(){
-        final EditText taskEditText = new EditText(NewNoteActivity.this);
-        AlertDialog.Builder builder = new AlertDialog.Builder(NewNoteActivity.this);
+        final EditText taskEditText = new EditText(NotesActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(NotesActivity.this);
         builder.setTitle("Add New Task")
                 .setView(taskEditText)
                 .setPositiveButton(R.string.todoAcceptBtn, new DialogInterface.OnClickListener() {
@@ -101,6 +98,7 @@ public class NewNoteActivity extends AppCompatActivity {
         db.close();
         updateList();
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

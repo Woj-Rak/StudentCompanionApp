@@ -19,6 +19,7 @@
         android:id="@+id/task_delete"
         android:onClick="deleteTask"
         android:drawableRight="@drawable/ic_done_black_24dp"
+        android:drawableEnd="@drawable/ic_done_black_24dp"
         android:background="@null"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

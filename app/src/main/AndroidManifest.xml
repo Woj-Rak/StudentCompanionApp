@@ -23,10 +23,10 @@
             android:label="@string/title_activity_quotes"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activities.NewNoteActivity"
+            android:name=".Activities.NotesActivity"
             android:label="@string/title_activity_new_note"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>

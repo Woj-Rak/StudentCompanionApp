@@ -1,34 +1,48 @@
 package com.example.wojtek.studentcompanion.Activities;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.example.wojtek.studentcompanion.DB.DatabaseContract;
+import com.example.wojtek.studentcompanion.DB.DatabaseHandler;
 import com.example.wojtek.studentcompanion.Fragments.AudioFragment;
 import com.example.wojtek.studentcompanion.Fragments.LocatorFragment;
 import com.example.wojtek.studentcompanion.Fragments.NotesFragment;
 import com.example.wojtek.studentcompanion.Fragments.ScheduleFragment;
 import com.example.wojtek.studentcompanion.R;
+import com.example.wojtek.studentcompanion.SettingsActivity;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     public void actionSettings() {
-
+        Intent myIntent = new Intent(MainActivity.this, SettingsActivity.class);
+        MainActivity.this.startActivity(myIntent);
     }
 
     public void actionQuote() {
         Intent myIntent = new Intent(MainActivity.this, QuotesActivity.class);
         MainActivity.this.startActivity(myIntent);
     }
-
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -62,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
     }
 
     //Top Right settings menu
@@ -82,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (id == R.id.action_settings) {
+            actionSettings();
             return true;
         }
         if (id == R.id.action_quote) {
@@ -100,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
       The way the fragments are handled each one of them can look differently and have its
       own unique functionality.*/
 
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -132,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SCHEDULE";
+                    return "WEEKLY SCHEDULE";
                 case 1:
                     return "NOTES";
                 case 2:
@@ -142,5 +156,6 @@ public class MainActivity extends AppCompatActivity {
             }
             return null;
         }
+
     }
 }
