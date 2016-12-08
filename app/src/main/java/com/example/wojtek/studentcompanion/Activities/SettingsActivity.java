@@ -1,7 +1,9 @@
-package com.example.wojtek.studentcompanion;
+package com.example.wojtek.studentcompanion.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.wojtek.studentcompanion.R;
 
 public class SettingsActivity extends AppCompatActivity {
 

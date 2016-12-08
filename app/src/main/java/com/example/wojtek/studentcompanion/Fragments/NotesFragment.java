@@ -14,16 +14,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.wojtek.studentcompanion.DB.DatabaseContract;
 import com.example.wojtek.studentcompanion.DB.DatabaseHandler;
+import com.example.wojtek.studentcompanion.Adapters.NotesAdapter;
 import com.example.wojtek.studentcompanion.R;
-
-import java.util.ArrayList;
 
 /**
  * Fragment For the Notes Section
@@ -36,11 +34,15 @@ public class NotesFragment extends Fragment {
     private static final String TAG = "NoteFragment";
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    private DatabaseHandler mHelper;
-    private ListView mTaskListView;
-    private ArrayAdapter<String> mAdapter;
+    private DatabaseHandler dbHelper;
+    private ListView taskListView;
+    NotesAdapter notesAdapter;
 
-    //Method Used to display a menu for adding a new note/task
+    public static final int COL_TASK_ID = 0;
+    public static final int COL_TASK_NAME = 1;
+
+
+    //Method used for displaying the menu allowing the user to add new tasks to the list.
     public Dialog addItemMenu(){
         final EditText taskEditText = new EditText(getActivity());
         taskEditText.setInputType(InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
@@ -50,16 +52,34 @@ public class NotesFragment extends Fragment {
                 .setPositiveButton(R.string.todoAcceptBtn, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String task = String.valueOf(taskEditText.getText());
-                        SQLiteDatabase db = mHelper.getWritableDatabase();
+                        //Gets the input from the text field
+                        String userInput = taskEditText.getText().toString();
+
+                        //Setting up the database to be written to
+                        DatabaseHandler dbHelper = new DatabaseHandler(getActivity());
+                        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+                        //Put the user input into ContentValues format
                         ContentValues values = new ContentValues();
-                        values.put(DatabaseContract.TaskEntry.COL_TASK_TITLE, task);
-                        db.insertWithOnConflict(DatabaseContract.TaskEntry.TABLE,
+                        values.clear();
+                        values.put(DatabaseContract.TaskEntry.COL_TASK_TITLE, userInput);
+
+                        //Inserts the user input into the database
+                        db.insertWithOnConflict(
+                                DatabaseContract.TaskEntry.TABLE,
                                 null,
                                 values,
-                                SQLiteDatabase.CONFLICT_REPLACE);
-                        db.close();
-                        updateList();
+                                SQLiteDatabase.CONFLICT_IGNORE);
+
+                        //New Query to get the updated values from the database
+                        Cursor cursor = db.query(DatabaseContract.TaskEntry.TABLE,
+                                new String[]{DatabaseContract.TaskEntry._ID, DatabaseContract.TaskEntry.COL_TASK_TITLE},
+                                null, null, null, null, null);
+
+                        //The old data is swapped for new so the new task can be seen in the list.
+                        notesAdapter.swapCursor(cursor);
+                        //Toast to confirm that the task has been added.
+                        Toast.makeText(getActivity(),"Task " + taskEditText.getText() + " added!", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .setNegativeButton(R.string.todoCancelBtn, new DialogInterface.OnClickListener() {
@@ -69,47 +89,6 @@ public class NotesFragment extends Fragment {
                     }
                 });
         return builder.create();
-    }
-
-    private void updateList(){
-        ArrayList<String> taskList = new ArrayList<>();
-        SQLiteDatabase db = mHelper.getReadableDatabase();
-        Cursor cursor = db.query(DatabaseContract.TaskEntry.TABLE,
-                new String[]{DatabaseContract.TaskEntry._ID, DatabaseContract.TaskEntry.COL_TASK_TITLE},
-                null, null, null, null, null);
-        while (cursor.moveToNext()) {
-            int idx = cursor.getColumnIndex(DatabaseContract.TaskEntry.COL_TASK_TITLE);
-            taskList.add(cursor.getString(idx));
-        }
-
-
-        if (mAdapter == null) {
-            mAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_todo,
-                    R.id.task_title,
-                    taskList);
-
-            mTaskListView.setAdapter(mAdapter);
-        } else {
-            mAdapter.clear();
-            mAdapter.addAll(taskList);
-            mAdapter.notifyDataSetChanged();
-        }
-
-        cursor.close();
-        db.close();
-    }
-
-
-    public void deleteTask(View view) {
-        View parent = (View) view.getParent();
-        TextView taskTextView = (TextView) parent.findViewById(R.id.task_title);
-        String task = String.valueOf(taskTextView.getText());
-        SQLiteDatabase db = mHelper.getWritableDatabase();
-        db.delete(DatabaseContract.TaskEntry.TABLE,
-                DatabaseContract.TaskEntry.COL_TASK_TITLE + " = ?",
-                new String[]{task});
-        db.close();
-        updateList();
     }
 
     public NotesFragment() {
@@ -131,8 +110,8 @@ public class NotesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_notes, container, false);
 
-        mHelper = new DatabaseHandler(getActivity());
-        mTaskListView = (ListView) rootView.findViewById(R.id.todoList);
+        dbHelper = new DatabaseHandler(getActivity());
+        taskListView = (ListView) rootView.findViewById(R.id.todoList);
 
         FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -142,20 +121,21 @@ public class NotesFragment extends Fragment {
             }
         });
 
-        SQLiteDatabase db = mHelper.getReadableDatabase();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.query(DatabaseContract.TaskEntry.TABLE,
                 new String[]{DatabaseContract.TaskEntry._ID, DatabaseContract.TaskEntry.COL_TASK_TITLE},
                 null, null, null, null, null);
+
         while(cursor.moveToNext()) {
             int idx = cursor.getColumnIndex(DatabaseContract.TaskEntry.COL_TASK_TITLE);
             Log.d(TAG, "Task: " + cursor.getString(idx));
         }
 
-        cursor.close();
-        db.close();
-        updateList();
+        notesAdapter = new NotesAdapter(getActivity(), cursor);
+        taskListView.setAdapter(notesAdapter);
 
         return rootView;
+
 
     }
 }

@@ -1,9 +1,6 @@
 package com.example.wojtek.studentcompanion.Activities;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,24 +10,14 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.content.Intent;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 
-import com.example.wojtek.studentcompanion.DB.DatabaseContract;
-import com.example.wojtek.studentcompanion.DB.DatabaseHandler;
 import com.example.wojtek.studentcompanion.Fragments.AudioFragment;
 import com.example.wojtek.studentcompanion.Fragments.LocatorFragment;
 import com.example.wojtek.studentcompanion.Fragments.NotesFragment;
 import com.example.wojtek.studentcompanion.Fragments.ScheduleFragment;
 import com.example.wojtek.studentcompanion.R;
-import com.example.wojtek.studentcompanion.SettingsActivity;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 

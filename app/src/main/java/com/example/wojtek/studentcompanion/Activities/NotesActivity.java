@@ -130,4 +130,5 @@ public class NotesActivity extends AppCompatActivity {
         db.close();
         updateList();
     }
+
 }
