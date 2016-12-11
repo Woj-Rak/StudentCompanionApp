@@ -3,6 +3,7 @@ package com.example.wojtek.studentcompanion.Fragments;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -41,6 +42,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
@@ -63,6 +65,9 @@ public class LocatorFragment extends Fragment implements OnMapReadyCallback, Goo
     private LatLng mLatLng;
     protected GoogleApiClient mGoogleApiClient;
     protected LocationRequest mLocationRequest;
+
+    Marker m = null;
+    SharedPreferences prefs = null;
 
     /**
      * The fragment argument representing the section number for this
@@ -96,10 +101,13 @@ public class LocatorFragment extends Fragment implements OnMapReadyCallback, Goo
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
+                        //The marker is created at the position the user is holding on the map
+                        //and the title of the marker is set to the input from the dialog
                         String userInput = taskEditText.getText().toString();
                         map.addMarker(new MarkerOptions()
                                 .position(point)
-                                .title(userInput));
+                                .title(userInput))
+                                .setDraggable(true);
                     }
                 })
                 .setNegativeButton(R.string.todoCancelBtn, new DialogInterface.OnClickListener() {
@@ -109,6 +117,30 @@ public class LocatorFragment extends Fragment implements OnMapReadyCallback, Goo
                     }
                 });
         return builder.create();
+    }
+
+    //Method used for removing markers from the map
+    public Dialog removeMarkerMenu(final Marker marker){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Are you sure you want to remove this marker?")
+                .setPositiveButton(R.string.markerRemove, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        marker.remove();
+                    }
+                })
+                .setNegativeButton(R.string.todoCancelBtn, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Does nothing, just closes the alert dialog
+                    }
+                });
+        return builder.create();
+    }
+
+    //Method used to display saved markers to the map.
+    public void updateMarkers(){
+
     }
 
     @Override
@@ -191,6 +223,25 @@ public class LocatorFragment extends Fragment implements OnMapReadyCallback, Goo
         map = googleMap;
         map.setOnMapLongClickListener(this);
 
+        /*Since Markers don't have long click listeners I use a drag listener to achieve the same
+        effect*/
+        map.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
+            @Override
+            public void onMarkerDragStart(Marker marker) {
+                removeMarkerMenu(marker).show();
+            }
+
+            @Override
+            public void onMarkerDrag(Marker marker) {
+
+            }
+
+            @Override
+            public void onMarkerDragEnd(Marker marker) {
+
+            }
+        });
+
     }
 
     public void getCurrentLocation(){
@@ -203,7 +254,7 @@ public class LocatorFragment extends Fragment implements OnMapReadyCallback, Goo
     public void onMapLongClick (LatLng point) {
 
         addMarkerMenu(point).show();
-        
+
 
     }
 
