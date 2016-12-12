@@ -27,7 +27,7 @@
             android:name=".Activities.QuotesActivity"
             android:label="@string/title_activity_quotes"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.SettingsActivity"></activity>
+        <activity android:name=".Activities.InstructionsActivity"></activity>
 
         <meta-data
             android:name="com.google.android.gms.version"

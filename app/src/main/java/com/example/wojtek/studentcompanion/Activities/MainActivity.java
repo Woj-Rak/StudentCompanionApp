@@ -1,16 +1,12 @@
 package com.example.wojtek.studentcompanion.Activities;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -21,15 +17,14 @@ import android.view.MenuItem;
 import com.example.wojtek.studentcompanion.Fragments.AudioFragment;
 import com.example.wojtek.studentcompanion.Fragments.LocatorFragment;
 import com.example.wojtek.studentcompanion.Fragments.NotesFragment;
-import com.example.wojtek.studentcompanion.Fragments.ScheduleFragment;
 import com.example.wojtek.studentcompanion.R;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    public void actionSettings() {
-        Intent myIntent = new Intent(MainActivity.this, SettingsActivity.class);
+    public void actionInstructions() {
+        Intent myIntent = new Intent(MainActivity.this, InstructionsActivity.class);
         MainActivity.this.startActivity(myIntent);
     }
 
@@ -102,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (id == R.id.action_settings) {
-            actionSettings();
+            actionInstructions();
             return true;
         }
         if (id == R.id.action_quote) {
@@ -131,12 +126,10 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return ScheduleFragment.newInstance(position + 1);
-                case 1:
                     return NotesFragment.newInstance(position + 1);
-                case 2:
+                case 1:
                     return AudioFragment.newInstance(position + 1);
-                case 3:
+                case 2:
                     return LocatorFragment.newInstance(position + 1);
                 default:
                     return null;
@@ -145,20 +138,18 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 4 total pages.
-            return 4;
+            // Show 3 total pages.
+            return 3;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "WEEKLY SCHEDULE";
-                case 1:
                     return "NOTES";
+                case 1:
+                    return "VOICE MEMOS";
                 case 2:
-                    return "AUDIO RECORD";
-                case 3:
                     return "CLASS LOCATOR";
             }
             return null;
