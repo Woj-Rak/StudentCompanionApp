@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Student Companion</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Instructions</string>
     <string name="action_quote">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_quotes">Motivational Quote</string>
@@ -9,6 +9,9 @@
     <string name="todoAcceptBtn">Add</string>
     <string name="todoCancelBtn">Cancel</string>
     <string name="markerRemove">Remove</string>
+    <string name="recordingConfirm">Confirm</string>
+    <string name="recordingDelete">Delete</string>
+
 
     <string-array name="InspQuotes">
         <item>\"I choose a lazy person to do a hard job. Because a lazy person will find an easy way to do it.\" - Bill Gates</item>
@@ -17,6 +20,7 @@
         <item>\"The important thing is not to stop questioning. Curiosity has its own reason for existing.\" - Albert Einstein</item>
         <item>\"It does not matter how slowly you go, so long as you do not stop.\" - Confucius</item>
         <item>\"You miss 100% of shots you don\'t take.\" - Konstantin Mladenov</item>
+        <item>\"I am not a good student, just a great googler.\" - Konstantin Mladenov</item>
         <item>\"Focus is a matter of deciding what things you\'re not going to do.\" - John Carmack</item>
         <item>\"Focused, hard work is the real key to success. Keep your eyes on the goal, and just keep taking the next step towards
                 completing it. If you aren\'t sure which way to do something, do it both ways and see which works better.\" - John Carmack</item>
@@ -27,5 +31,10 @@
         <item>\"Real stupidity beats artificial intelligence every time.\" - Terry Pratchett</item>
     </string-array>
 
+    <string name="NotesInstructions">To add a new note simply click the plus button, enter text and confirm by clicking "add". To mark notes as done click on the checkmark to their right side.</string>
+    <string name="VoiceMemosInstructions">To record a new memo press the mic button and name your file. When you want to finish the recording click the stop button.
+                                          To play recordings simply click on one of the recordings listed on the screen. To delete recordings click and hold.</string>
+    <string name="LocatorInstructions">Firstly click on the button to move to your current location, add markers by clicking and holding on the screen. To remove markers click and hold on one.
+                                        When a marker is selected click the button in the bottom right corner of the map to open google maps with directions of how to get there.</string>
 
 </resources>
