@@ -132,7 +132,7 @@ public class AudioFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_audio, container, false);
 
-        ListView listView = (ListView) rootView.findViewById(R.id.audioList);
+        final ListView listView = (ListView) rootView.findViewById(R.id.audioList);
 
         final FloatingActionButton recordFab = (FloatingActionButton) rootView.findViewById(R.id.recordfab);
         final FloatingActionButton stopRecFab = (FloatingActionButton) rootView.findViewById(R.id.stoprecordfab);
@@ -161,6 +161,7 @@ public class AudioFragment extends Fragment {
         //displayed to the user.
         stopRecFab.hide();
         stopPlayFab.hide();
+
 
         //Functionality for playing the recordings by clicking on them.
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -259,6 +260,7 @@ public class AudioFragment extends Fragment {
                 //Toast message displayed to confirm that the recording has been stopped
                 Toast.makeText(getActivity(), "Recording Completed",
                         Toast.LENGTH_LONG).show();
+
                 //Update the listview to reflect the changes
                 adapter.notifyDataSetChanged();
                 updateList();
