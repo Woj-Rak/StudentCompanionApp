@@ -20,3 +20,4 @@ Data persistence in this application is achieved by using SQL databases and savi
 
 # Youtube Video
 The following video goes in-depth about every major part of the applicaiton, explaining the functionality behind it.
+https://www.youtube.com/watch?v=w6k3mTyt-Ic
